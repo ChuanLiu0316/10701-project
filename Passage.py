@@ -57,8 +57,12 @@ class Passage:
             newQuestion = Question(data[i*5+3: (i+1)*5+3])
             self.questions.append(newQuestion)
 
+        TempStopWords = []
+        with open('stopwords.txt') as f:
+            for line in f:
+                TempStopWords.append(line.replace('\r\n', ""))
 
-        self.stopWords = {} # set of stop words, in paper notation is U, can be downloaded, will only be used in distance based Algo
+        self.stopWords = set(TempStopWords) # set of stop words, in paper notation is U, can be downloaded, will only be used in distance based Algo
      
     def wordCount(self, word):
         #return counts of word appears in self.passage
