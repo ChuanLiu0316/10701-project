@@ -5,11 +5,17 @@
 from math import log
 import nltk
 
+def eliminatePeriodAndComma(str):
+    return unparsedPagraph.replace('.', "").replace(',', "")
+
 class Question:
 
     def __init__(self, data):
-        self.words = {} #set of words in question 
+        self.questionWords = set(nltk.word_tokenize(eliminatePeriodAndComma(data[0]))) #set of words in question 
         self.answersWords = [] #array of length 4, each one is a set of words for answer 1,2,3,4
+        for i in range(4):
+            self.answersWords.append(set(nltk.word_tokenize(eliminatePeriodAndComma(data[i+1]))))
+
 
 
 
@@ -50,7 +56,7 @@ class Passage:
      
     def wordCount(self, word):
         #return counts of word appears in self.passage
-        return 1
+        return self.passageWordsCountDict[word]
 
     def InverseWordCount(self, word):
         # simple, this is final
