@@ -6,13 +6,16 @@ from math import log
 import nltk
 
 def eliminatePeriodAndComma(str):
-    return unparsedPagraph.replace('.', "").replace(',', "")
+    return str.replace('.', "").replace(',', "")
 
 class Question:
 
     def __init__(self, data):
-        self.questionWords = set(nltk.word_tokenize(eliminatePeriodAndComma(data[0]))) #set of words in question 
+        Temp = data[0].split(':')
+        self.isOne = Temp[0] =='one'  # bool indicating whether the question can be answered by one sentence 
+        self.questionWords = set(nltk.word_tokenize(eliminatePeriodAndComma(Temp[1].replace('?',"")))) #set of words in question 
         self.answersWords = [] #array of length 4, each one is a set of words for answer 1,2,3,4
+       
         for i in range(4):
             self.answersWords.append(set(nltk.word_tokenize(eliminatePeriodAndComma(data[i+1]))))
 
