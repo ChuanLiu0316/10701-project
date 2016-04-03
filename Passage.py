@@ -8,16 +8,19 @@ import nltk
 def eliminatePeriodAndComma(str):
     return str.replace('.', "").replace(',', "")
 
+def toLowerCase(str):
+    return str.lower()    
+
 class Question:
 
     def __init__(self, data):
         Temp = data[0].split(':')
         self.isOne = Temp[0] =='one'  # bool indicating whether the question can be answered by one sentence 
-        self.questionWords = set(nltk.word_tokenize(eliminatePeriodAndComma(Temp[1].replace('?',"")))) #set of words in question 
+        self.questionWords = set(nltk.word_tokenize(eliminatePeriodAndComma(toLowerCase(Temp[1].replace('?',""))))) #set of words in question 
         self.answersWords = [] #array of length 4, each one is a set of words for answer 1,2,3,4
        
         for i in range(4):
-            self.answersWords.append(set(nltk.word_tokenize(eliminatePeriodAndComma(data[i+1]))))
+            self.answersWords.append(set(nltk.word_tokenize(toLowerCase(eliminatePeriodAndComma(data[i+1])))))
 
 
 
@@ -43,7 +46,7 @@ class Passage:
         # Passage part
         unparsedPagraph = self.replaceNewlineWithSpace(data[2])
     
-        self.passage = nltk.word_tokenize( unparsedPagraph.replace('.', "").replace(',', "")) #should be a string array, in paper notation is 'P', with no '.' and ','
+        self.passage = nltk.word_tokenize( toLowerCase(unparsedPagraph.replace('.', "").replace(',', ""))) #should be a string array, in paper notation is 'P', with no '.' and ','
         self.passageWords = set(self.passage) #should be a set containing non-duplicate words in passage, appear in paper, but i don't know what it's for 
         self.passageWordsCountDict = {x: self.passage.count(x) for x in self.passageWords}  #efficient in doing sliding window
 
@@ -63,6 +66,6 @@ class Passage:
 
     def InverseWordCount(self, word):
         # simple, this is final
-        return log(1 + (1/ self.wordCount(word)))
+        return log(1 + (1.0/ self.wordCount(word)))
         
 
