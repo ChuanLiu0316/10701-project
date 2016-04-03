@@ -48,11 +48,12 @@ class Passage:
 
         self.stopWords = {} # set of stop words, in paper notation is U, can be downloaded, will only be used in distance based Algo
      
-    def wordCount(word):
+    def wordCount(self, word):
         #return counts of word appears in self.passage
+        return 1
 
-    def InverseWordCount(word):
+    def InverseWordCount(self, word):
         # simple, this is final
-        return log(1 + (1/ wordCount(word)))
+        return log(1 + (1/ self.wordCount(word)))
         
 
