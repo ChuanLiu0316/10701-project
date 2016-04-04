@@ -22,7 +22,7 @@ class DistanceBased:
             SQ = Qset.intersection(passage.passageWords).difference(passage.stopWords)
             ScoreArray = []
             for j in range(4):
-                SAI = (Q.answersWords[j].intersection(passage.passageWords)).difference(Qset).difference(passage.stopWords)
+                SAI = ((Q.answersWords[j].intersection(passage.passageWords)).difference(Qset)).difference(passage.stopWords)
                 if len(SQ) == 0 or len(SAI) == 0:
                     ScoreArray.append(1.0)
                 else:

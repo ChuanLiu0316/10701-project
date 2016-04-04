@@ -71,5 +71,4 @@ class Passage:
     def InverseWordCount(self, word):
         # simple, this is final
         return log(1 + (1.0/ self.wordCount(word)))
-        
 

@@ -39,20 +39,37 @@ class Test:
             SWanswers.append(tempSW)    
             SWDanswers.append(tempSWD)
         
-        SWcorrect = 0
-        SWerror = 0
-        SWDcorrect = 0
-        SWDerror = 0
+        SWcorrectOne = 0
+        SWcorrectMultiple = 0
+        SWerrorOne = 0
+        SWerrorMultiple = 0
+        SWDcorrectOne = 0
+        SWDcorrectMultiple = 0
+        SWDerrorOne = 0
+        SWDerrorMultiple = 0
         for i in range(len(Answers)):
             for j in range(4):
-                if SWanswers[i][j] == Answers[i][j]:
-                    SWcorrect += 1
-                else:
-                    SWerror += 1
+                if TestPassages.passages[i].questions[j].isOne:
+                    if SWanswers[i][j] == Answers[i][j]:
+                        SWcorrectOne += 1
+                    else:
+                        SWerrorOne += 1
 
-                if SWDanswers[i][j] == Answers[i][j]:
-                    SWDcorrect += 1
+                    if SWDanswers[i][j] == Answers[i][j]:
+                        SWDcorrectOne += 1
+                    else:
+                        SWDerrorOne += 1
                 else:
-                    SWDerror += 1
+                    if SWanswers[i][j] == Answers[i][j]:
+                        SWcorrectMultiple += 1
+                    else:
+                        SWerrorMultiple += 1
 
-        return (Answers, SWanswers, SWcorrect, SWerror, SWDanswers, SWDcorrect, SWDerror)                       
+                    if SWDanswers[i][j] == Answers[i][j]:
+                        SWDcorrectMultiple += 1
+                    else:
+                        SWDerrorMultiple += 1 
+
+        return [Answers, 
+               [SWanswers, SWcorrectOne, SWerrorOne, SWcorrectMultiple, SWerrorMultiple],
+               [SWDanswers, SWDcorrectOne, SWDerrorOne, SWDcorrectMultiple, SWDerrorMultiple]]                     
