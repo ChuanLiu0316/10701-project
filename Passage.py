@@ -4,6 +4,7 @@
 # parsing also done here 
 from math import log
 import nltk
+import re 
 
 def eliminatePeriodAndComma(str):
     return str.replace('.', "").replace(',', "")
@@ -44,12 +45,14 @@ class Passage:
         Passage.passageCount += 1
 
         # Passage part
-        unparsedPagraph = self.replaceNewlineWithSpace(data[2])
+        unparsedPagraph = self.replaceNewlineWithSpace(data[2]) + " "
     
-        self.passage = nltk.word_tokenize( toLowerCase(unparsedPagraph.replace('.', "").replace(',', ""))) #should be a string array, in paper notation is 'P', with no '.' and ','
+        self.passage = nltk.word_tokenize( toLowerCase(unparsedPagraph.replace('. ', " ").replace(', ', " ").replace("? ", " ").replace("! ", " "))) #should be a string array, in paper notation is 'P', with no '.' and ','
         self.passageWords = set(self.passage) #should be a set containing non-duplicate words in passage, appear in paper, but i don't know what it's for 
         self.passageWordsCountDict = {x: self.passage.count(x) for x in self.passageWords}  #efficient in doing sliding window
+        rawSentences = re.split('\.\ |\?\ |\!\ ', toLowerCase(unparsedPagraph.replace(', ', " ")) ) 
 
+        self.sentences =[nltk.word_tokenize(value) for value in rawSentences if len(value) != 0]
 
         # Questions and answers part
         self.questions = [] #array of length 4 of object Question 

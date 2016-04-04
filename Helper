@@ -1,0 +1,4 @@
+A = Test.run("MCTest/mc160.train.tsv", "MCTest/mc160.train.ans")
+B = Test.run("MCTest/mc160.dev.tsv", "MCTest/mc160.dev.ans")
+C = Test.run("MCTest/mc500.train.tsv", "MCTest/mc500.train.ans")
+D = Test.run("MCTest/mc500.dev.tsv", "MCTest/mc500.dev.ans")
