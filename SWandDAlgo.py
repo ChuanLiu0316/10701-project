@@ -21,6 +21,6 @@ class SWDalgo:
         SWscores = SlidingWindow.runSentence(passage)
         for i in range(len(SWscores)):
             for j in range(len(SWscores[i])):
-                SWscores[i][j] = SWscores[i][j] - 5*(Dscores[i][j])
+                SWscores[i][j] = SWscores[i][j] - (Dscores[i][j])
 
         return  SWscores

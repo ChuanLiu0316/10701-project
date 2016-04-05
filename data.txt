@@ -1,0 +1,46 @@
+SWDsentence 
+MC160 Train
+correct 102, error 30
+MC160 dev
+correct 42, error 11
+
+MC500 Train
+correct 383, error 164
+MC500 dev
+correct 56, error 30
+
+
+SlidingWindow Basic 
+
+87  45
+33  20
+
+314 233
+48 38
+
+
+SlidingWindow Sentence Based
+
+90 42
+35 18
+338 209
+51 35
+
+
+
+SlidingWindow + passage-wide Distance 
+97 35
+36 17
+347 200
+53 33
+
+
+
+
+SlidingWindow Sentence Based + passage-wide Distance 
+102 30
+38 15
+373 174
+54 32 
+
+These data are obtained all without optimizing weight, distance score and sliding window score's weights are 1, and -1. 
