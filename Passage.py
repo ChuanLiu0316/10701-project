@@ -46,11 +46,12 @@ class Passage:
 
         # Passage part
         unparsedPagraph = self.replaceNewlineWithSpace(data[2]) + " "
+        self.unparsedPagraph = unparsedPagraph
     
-        self.passage = nltk.word_tokenize( toLowerCase(unparsedPagraph.replace('. ', " ").replace(', ', " ").replace("? ", " ").replace("! ", " "))) #should be a string array, in paper notation is 'P', with no '.' and ','
+        self.passage = nltk.word_tokenize( toLowerCase(unparsedPagraph.replace('. ', " ").replace(', ', " ").replace("? ", " ").replace("! ", " ").replace('"', " "))) #should be a string array, in paper notation is 'P', with no '.' and ','
         self.passageWords = set(self.passage) #should be a set containing non-duplicate words in passage, appear in paper, but i don't know what it's for 
         self.passageWordsCountDict = {x: self.passage.count(x) for x in self.passageWords}  #efficient in doing sliding window
-        rawSentences = re.split('\.\ |\?\ |\!\ ', toLowerCase(unparsedPagraph.replace(', ', " ")) ) 
+        rawSentences = nltk.sent_tokenize(toLowerCase(unparsedPagraph))
 
         self.sentences =[nltk.word_tokenize(value) for value in rawSentences if len(value) != 0]
 
@@ -69,7 +70,10 @@ class Passage:
      
     def wordCount(self, word):
         #return counts of word appears in self.passage
-        return self.passageWordsCountDict[word]
+        if word in self.passageWordsCountDict:
+            return self.passageWordsCountDict[word]
+        else:
+            return 0.001    
 
     def InverseWordCount(self, word):
         # simple, this is final

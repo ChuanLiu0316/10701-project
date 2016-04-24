@@ -1,46 +1,80 @@
-SWDsentence 
-MC160 Train
-correct 102, error 30
-MC160 dev
-correct 42, error 11
-
-MC500 Train
-correct 383, error 164
-MC500 dev
-correct 56, error 30
-
-
-SlidingWindow Basic 
-
-87  45
-33  20
-
-314 233
-48 38
-
-
-SlidingWindow Sentence Based
-
-90 42
-35 18
-338 209
-51 35
-
-
 
 SlidingWindow + passage-wide Distance 
-97 35
-36 17
-347 200
-53 33
+97 35   105 43 
+36 17  37  30
+347 200  359 294
+53 33  64  50 
 
 
 
 
 SlidingWindow Sentence Based + passage-wide Distance 
-102 30
-38 15
-373 174
-54 32 
+102 30  101 47
+38 15  35  32
+373 174  340  313
+54 32  63  51 
 
 These data are obtained all without optimizing weight, distance score and sliding window score's weights are 1, and -1. 
+
+
+
+
+SlidingWindow Basic 
+
+single  multi 
+87  45  93  55 
+33  20  35  32
+120		128
+
+
+314 233  352  301
+48 38  64  50 
+362		416
+
+
+SlidingWindow Sentence Based
+
+90 42  82 66
+35 18  34  33 
+125			116
+
+338 209  328  325
+51 35  63  51 
+389    391
+
+
+
+
+
+
+SlidinWindow + passage-wide no bug Distance 
+97, 35, 109, 39
+36, 17, 38, 29
+133			147
+
+352, 195, 368, 285
+53, 33, 66, 48
+405 	434
+
+SlidingWindow Sentence Based + passage-wide no bug Distance
+100, 32, 105, 43
+36, 17, 38, 29
+136		143
+
+
+371, 176, 365, 288  
+55, 31, 63, 51
+426			428
+
+
+SldingWindow Sentence Based + sentence-based no bug Distance 
+103, 29, 82, 66
+40, 13, 28, 39
+143		110
+
+
+388, 159, 337, 316
+55, 31, 62, 52
+443		399
+
+

@@ -35,9 +35,9 @@ class SlidingWindow:
     @classmethod
     def runSentence(self, passage):
         def score(S):
-            max = 0
+            max = 0.0
             for i in range(len(passage.sentences)):
-                sum = 0
+                sum = 0.0
                 currentSence = passage.sentences[i]
                 for j in range(len(currentSence)):
                     tempWord = currentSence[j]

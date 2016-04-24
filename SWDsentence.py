@@ -9,16 +9,20 @@ class SWDalgo:
         def scoreDis(SQ, SA, sentence):
             Qindexes = [i for i,x in enumerate(sentence) if x in SQ]
             Aindexes = [i for i,x in enumerate(sentence) if x in SA]
-            min = len(sentence)
-            if min <2: 
-                print "impossible"
-            for Aindex in Aindexes:
-                for Qindex in Qindexes:
+            
+            sum = 0.0
+            abosulteMin = len(sentence)
+            for Qindex in Qindexes:
+                min = len(sentence)
+                for Aindex in Aindexes:
                     if abs(Qindex - Aindex) < min:
                         min = abs(Qindex - Aindex)
-            if min == 0:
-                print "impossible"
-            return float(min)/len(sentence)      
+                    if abs(Qindex - Aindex) < abosulteMin: 
+                        abosulteMin = abs(Qindex - Aindex)
+                sum += min       
+      
+            avg = sum/len(sentence)
+            return avg/len(sentence)      
 
         def score(Q, A):
             max = -100000
@@ -36,9 +40,12 @@ class SWDalgo:
                         sum += passage.InverseWordCount(tempWord)   
                 tempScore = (sum)/log(1 + len(currentSence))
 
-                DisScore = 1
+                DisScore = 1.0
                 if len(QS) != 0 and len(AS) != 0:
                     DisScore = scoreDis(QS, AS, currentSence)
+
+                if DisScore >1:
+                    print "impossible!!"    
 
                 tempScore = tempScore - DisScore
 

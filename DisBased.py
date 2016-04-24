@@ -7,12 +7,16 @@ class DistanceBased:
         def score(SQ, SA):
             Qindexes = [i for i,x in enumerate(passage.passage) if x in SQ]
             Aindexes = [i for i,x in enumerate(passage.passage) if x in SA]
-            min = len(passage.passage)
-            for Aindex in Aindexes:
-                for Qindex in Qindexes:
+            sum = 0.0 
+            for Qindex in Qindexes:
+                min = len(passage.passage)
+                for Aindex in Aindexes:
                     if abs(Qindex - Aindex) < min:
                         min = abs(Qindex - Aindex)
-            return float(min)/len(passage.passage)            
+
+                sum += min
+            avg = sum/len(Qindexes)            
+            return float(avg)/len(passage.passage)            
         
         answersScores = []
         for i in range(4):
