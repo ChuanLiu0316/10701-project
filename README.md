@@ -10,5 +10,10 @@ Architecture
 6. relation extraction (Optional)
 
 Other useful things, 
-Stemming and Lemmatization should be done in 3 or 4
+Stemming and Lemmatization should be done in 3 or 4.
 Synonym Insertion using Wordnet, should be done after part 4. 
+
+Training Methods 
+Linear Support Vector Machine Classifier (Done!)
+Non-Linear SVC (not sure if gonna helpful)
+Neural Nets (Try if have time)
